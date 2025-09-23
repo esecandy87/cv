@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi CV - Estilo VSCode</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Librería para exportar a PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar estilo Activity Bar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <i class="fas fa-code"></i>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#perfil" class="active"><i class="fas fa-user"></i></a></li>
+          <li><a href="#habilidades"><i class="fas fa-laptop-code"></i></a></li>
+          <li><a href="#experiencia"><i class="fas fa-briefcase"></i></a></li>
+          <li><a href="#proyectos"><i class="fas fa-folder-open"></i></a></li>
+          <li><a href="#contacto"><i class="fas fa-envelope"></i></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Editor principal -->
+    <main class="editor">
+      <div class="tabs">
+        <div class="tab active">cv.html</div>
+        <button id="exportPdf" class="btn-pdf" title="Exportar a PDF">
+          <i class="fas fa-file-pdf"></i>
+        </button>
+      </div>
+
+      <div class="content">
+        <section id="perfil" class="section active">
+          <div class="code-block">
+            <h2><span class="tag"><h2></span>Perfil<span class="tag"></h2></span></h2>
+            <p>Hola 👋, soy <strong>Tu Nombre</strong>, programador apasionado por construir cosas útiles y aprender cada día.</p>
+            <p>📍 Ubicación | 📧 tuemail@ejemplo.com | 🔗 <a href="https://github.com/tuusuario">GitHub</a></p>
+          </div>
+        </section>
+
+        <section id="habilidades" class="section">
+          <div class="code-block">
+            <h2><span class="tag"><h2></span>Habilidades<span class="tag"></h2></span></h2>
+            <ul>
+              <li><span class="lang">JavaScript</span> | <span class="lang">Python</span> | <span class="lang">TypeScript</span></li>
+              <li><span class="lang">React</span> | <span class="lang">Node.js</span> | <span class="lang">Docker</span></li>
+              <li><span class="lang">Git</span> | <span class="lang">SQL</span> | <span class="lang">HTML/CSS</span></li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="experiencia" class="section">
+          <div class="code-block">
+            <h2><span class="tag"><h2></span>Experiencia<span class="tag"></h2></span></h2>
+            <div class="job">
+              <h3>Desarrollador Full Stack — Empresa XYZ</h3>
+              <p><em>Ene 2022 - Presente</em></p>
+              <ul>
+                <li>Desarrollo de APIs REST con Node.js y Express.</li>
+                <li>Implementación de CI/CD con GitHub Actions.</li>
+                <li>Optimización del rendimiento frontend con React y Webpack.</li>
+              </ul>
+            </div>
+            <div class="job">
+              <h3>Desarrollador Frontend — Startup ABC</h3>
+              <p><em>Mar 2020 - Dic 2021</em></p>
+              <ul>
+                <li>Creación de interfaces responsivas con Vue.js y TailwindCSS.</li>
+                <li>Integración con APIs de terceros y manejo de estados con Vuex.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="proyectos" class="section">
+          <div class="code-block">
+            <h2><span class="tag"><h2></span>Proyectos<span class="tag"></h2></span></h2>
+            <div class="project">
+              <h3><a href="#">App de Tareas con React</a></h3>
+              <p>Una app minimalista para gestionar tareas diarias. <code>React, CSS, LocalStorage</code></p>
+            </div>
+            <div class="project">
+              <h3><a href="#">API REST para Blog</a></h3>
+              <p>Backend en Node.js + MongoDB para gestionar posts y usuarios. <code>Express, JWT, MongoDB</code></p>
+            </div>
+          </div>
+        </section>
+
+        <section id="contacto" class="section">
+          <div class="code-block">
+            <h2><span class="tag"><h2></span>Contacto<span class="tag"></h2></span></h2>
+            <p>📫 <a href="mailto:tuemail@ejemplo.com">tuemail@ejemplo.com</a></p>
+            <p>🐙 <a href="https://github.com/tuusuario">github.com/tuusuario</a></p>
+            <p>🔗 <a href="https://linkedin.com/in/tuperfil">linkedin.com/in/tuperfil</a></p>
+            <p>🌱 Disponible para nuevos proyectos y colaboraciones.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Contenedor oculto para exportar PDF -->
+  <div id="pdf-export-container" class="pdf-container">
+    <!-- Aquí se copiará el contenido al hacer clic en exportar -->
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
