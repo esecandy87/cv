@@ -117,6 +117,36 @@ body {
   pointer-events: none;
 }
 
+/* Selector de idioma */
+.lang-switcher {
+  display: flex;
+  margin-right: 15px;
+}
+
+.lang-btn {
+  background: none;
+  border: 1px solid #444;
+  color: #d4d4d4;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin: 0 2px;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.2s;
+}
+
+.lang-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.lang-btn.active {
+  background-color: #1e1e1e;
+  border-bottom: 2px solid var(--vscode-accent);
+  color: var(--vscode-accent);
+  font-weight: bold;
+}
+
 .content {
   padding: 30px 30px 30px 80px; /* espacio extra a la izquierda para números */
   flex: 1;
@@ -155,7 +185,7 @@ body {
   width: 40px;
   background-color: #262626;
   border-right: 1px solid #3a3a3a;
-  padding: 0 0px;
+  padding: 0 8px;
   text-align: right;
   color: var(--vscode-line-number);
   font-size: 0.85em;
@@ -288,43 +318,4 @@ a:hover {
 .pdf-container .job h3,
 .pdf-container .project h3 {
   color: #005a9e !important;
-}
-/* Selector de idioma */
-.lang-switcher {
-  display: flex;
-  margin-right: 15px;
-}
-
-.lang-btn {
-  background: none;
-  border: 1px solid #444;
-  color: #d4d4d4;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.9rem;
-  padding: 6px 12px;
-  cursor: pointer;
-  margin: 0 2px;
-  border-radius: 4px 4px 0 0;
-  transition: all 0.2s;
-}
-
-.lang-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.lang-btn.active {
-  background-color: #1e1e1e;
-  border-bottom: 2px solid var(--vscode-accent);
-  color: var(--vscode-accent);
-  font-weight: bold;
-}
-
-/* Ocultar secciones no activas por idioma */
-.section {
-  display: none;
-}
-
-.section.active {
-  display: block;
-  animation: fadeIn 0.5s ease-in;
 }
