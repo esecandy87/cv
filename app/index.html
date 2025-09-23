@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
-  <!-- Librería para exportar a PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
 </head>
 <body>
@@ -19,11 +18,11 @@
       </div>
       <nav>
         <ul>
-          <li><a href="#perfil" class="active"><i class="fas fa-user"></i></a></li>
-          <li><a href="#habilidades"><i class="fas fa-laptop-code"></i></a></li>
-          <li><a href="#experiencia"><i class="fas fa-briefcase"></i></a></li>
-          <li><a href="#proyectos"><i class="fas fa-folder-open"></i></a></li>
-          <li><a href="#contacto"><i class="fas fa-envelope"></i></a></li>
+          <li><a href="#perfil" data-section="perfil" class="nav-link active"><i class="fas fa-user"></i></a></li>
+          <li><a href="#habilidades" data-section="habilidades" class="nav-link"><i class="fas fa-laptop-code"></i></a></li>
+          <li><a href="#experiencia" data-section="experiencia" class="nav-link"><i class="fas fa-briefcase"></i></a></li>
+          <li><a href="#proyectos" data-section="proyectos" class="nav-link"><i class="fas fa-folder-open"></i></a></li>
+          <li><a href="#contacto" data-section="contacto" class="nav-link"><i class="fas fa-envelope"></i></a></li>
         </ul>
       </nav>
     </aside>
@@ -31,15 +30,20 @@
     <!-- Editor principal -->
     <main class="editor">
       <div class="tabs">
-        <div class="tab active">cv.html</div>
+        <!-- Selector de idioma -->
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="es">ES</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <!-- Botón PDF -->
         <button id="exportPdf" class="btn-pdf" title="Exportar a PDF">
           <i class="fas fa-file-pdf"></i>
         </button>
       </div>
 
       <div class="content">
-        <!-- PERFIL -->
-        <section id="perfil" class="section active">
+        <!-- =============== VERSIÓN ESPAÑOL =============== -->
+        <section id="perfil" class="section lang-es active">
           <div class="code-block">
             <h2><span class="tag"><h2></span>Perfil<span class="tag"></h2></span></h2>
             <p>
@@ -60,18 +64,16 @@
           </div>
         </section>
 
-        <!-- HABILIDADES -->
-        <section id="habilidades" class="section">
+        <section id="habilidades" class="section lang-es">
           <div class="code-block">
             <h2><span class="tag"><h2></span>Habilidades<span class="tag"></h2></span></h2>
 
             <h3><span class="tag"><h3></span>Tecnologías Clave<span class="tag"></h3></span></h3>
             <ul>
-              <li><span class="lang">API Management & ESB:</span> IBM API Connect, Apigee, MuleSoft, WSO2, Kong, TIBCO BusinessWorks 5/6</li>
+              <li><span class="lang">API Management & ESB:</span> IBM API Connect, Apigee, MuleSoft, WSO2, Kong, TIBCO BW 5/6</li>
               <li><span class="lang">Cloud & DevOps:</span> RedHat OpenShift, Kubernetes, Docker, AWS, Azure, GCP, Ansible, Terraform, GitHub Actions, Jenkins, Azure DevOps</li>
               <li><span class="lang">Backend & Scripting:</span> Java, Spring Boot, Python, J2EE, Hibernate, Struts, XML/XSD/XSLT, JSON, SOAP, Kafka</li>
               <li><span class="lang">Monitoring & Sistemas:</span> Dynatrace, ELK (ElasticSearch, LogStash, Kibana), UNIX, RedHat, Ubuntu</li>
-              <li><span class="lang">Web Server:</span> Nginx, WebSphere, Tomcat</li>
             </ul>
 
             <h3><span class="tag"><h3></span>Consultoría & Análisis<span class="tag"></h3></span></h3>
@@ -90,8 +92,7 @@
           </div>
         </section>
 
-        <!-- EXPERIENCIA -->
-        <section id="experiencia" class="section">
+        <section id="experiencia" class="section lang-es">
           <div class="code-block">
             <h2><span class="tag"><h2></span>Experiencia<span class="tag"></h2></span></h2>
 
@@ -140,8 +141,7 @@
           </div>
         </section>
 
-        <!-- PROYECTOS -->
-        <section id="proyectos" class="section">
+        <section id="proyectos" class="section lang-es">
           <div class="code-block">
             <h2><span class="tag"><h2></span>Proyectos Personales<span class="tag"></h2></span></h2>
 
@@ -162,15 +162,147 @@
           </div>
         </section>
 
-        <!-- CONTACTO -->
-        <section id="contacto" class="section">
+        <section id="contacto" class="section lang-es">
           <div class="code-block">
             <h2><span class="tag"><h2></span>Contacto<span class="tag"></h2></span></h2>
             <p>📫 <a href="mailto:esecandy87@gmail.com">esecandy87@gmail.com</a></p>
-            <p>📍 Calle Camarena, Madrid, España</p>
+            <p>📞 +34 617 04 07 40</p>
+            <p>📍 Calle Camarena 88, 1ºD, Madrid, España</p>
             <p>🐙 <a href="https://www.linkedin.com/in/miguel-c-suárez-gonzález-76ba8048/" target="_blank">linkedin.com/in/miguel-c-suárez-gonzález-76ba8048</a></p>
             <p>🌐 <a href="https://retrochuches.com" target="_blank">retrochuches.com</a> | ✍️ <a href="https://aunclickdedistancia.blogspot.com" target="_blank">Blog personal</a></p>
             <p>🌱 Disponible para consultoría, arquitectura de soluciones o colaboraciones tecnológicas.</p>
+          </div>
+        </section>
+
+        <!-- =============== VERSIÓN INGLÉS =============== -->
+        <section id="perfil-en" class="section lang-en">
+          <div class="code-block">
+            <h2><span class="tag"><h2></span>Profile<span class="tag"></h2></span></h2>
+            <p>
+              👨‍💻 <strong>Senior Solutions Analyst with 15+ years in IT consulting</strong> — specialized in integration architecture, APIs, and digital transformation in banking and corporate environments.
+            </p>
+            <p>
+              I have led the technical and functional analysis of critical solutions for Santander Group and other major clients, combining technical depth with business vision. My value lies in translating complex requirements into robust, scalable, and strategy-aligned architectures.
+            </p>
+            <p>
+              <strong>Career Path:</strong> Evolved from Java/J2EE development to senior architect and analyst roles, mastering integration technologies (TIBCO, MuleSoft, Apigee), cloud (OpenShift, Kubernetes), and DevOps (Ansible, Terraform, CI/CD).
+            </p>
+            <p>
+              📍 Madrid, Spain | 📧 esecandy87@gmail.com | 📞 +34 617 04 07 40
+            </p>
+            <p>
+              🔗 <a href="https://www.linkedin.com/in/miguel-c-suárez-gonzález-76ba8048/" target="_blank">LinkedIn</a> | 🌐 <a href="https://retrochuches.com" target="_blank">retrochuches.com</a> | ✍️ <a href="https://aunclickdedistancia.blogspot.com" target="_blank">Personal Blog</a>
+            </p>
+          </div>
+        </section>
+
+        <section id="habilidades-en" class="section lang-en">
+          <div class="code-block">
+            <h2><span class="tag"><h2></span>Skills<span class="tag"></h2></span></h2>
+
+            <h3><span class="tag"><h3></span>Key Technologies<span class="tag"></h3></span></h3>
+            <ul>
+              <li><span class="lang">API Management & ESB:</span> IBM API Connect, Apigee, MuleSoft, WSO2, Kong, TIBCO BW 5/6</li>
+              <li><span class="lang">Cloud & DevOps:</span> RedHat OpenShift, Kubernetes, Docker, AWS, Azure, GCP, Ansible, Terraform, GitHub Actions, Jenkins, Azure DevOps</li>
+              <li><span class="lang">Backend & Scripting:</span> Java, Spring Boot, Python, J2EE, Hibernate, Struts, XML/XSD/XSLT, JSON, SOAP, Kafka</li>
+              <li><span class="lang">Monitoring & Systems:</span> Dynatrace, ELK (ElasticSearch, LogStash, Kibana), UNIX, RedHat, Ubuntu</li>
+            </ul>
+
+            <h3><span class="tag"><h3></span>Consulting & Analysis<span class="tag"></h3></span></h3>
+            <ul>
+              <li>Functional and technical analysis in high-criticality banking environments.</li>
+              <li>Design of enterprise integration architectures and cloud migration plans.</li>
+              <li>Cross-functional coordination between development, architecture, and infrastructure teams.</li>
+              <li>Establishment of methodologies, technical standards, and testing plans.</li>
+            </ul>
+
+            <h3><span class="tag"><h3></span>Languages & Certifications<span class="tag"></h3></span></h3>
+            <ul>
+              <li><span class="lang">Spanish:</span> Native | <span class="lang">English:</span> Full Professional | <span class="lang">French:</span> Limited Working | <span class="lang">Japanese:</span> Elementary</li>
+              <li><span class="lang">Certification:</span> App Integration Workshop - Level 1</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="experiencia-en" class="section lang-en">
+          <div class="code-block">
+            <h2><span class="tag"><h2></span>Experience<span class="tag"></h2></span></h2>
+
+            <div class="job">
+              <h3>Senior Solutions Analyst — Santander Digital Services</h3>
+              <p><em>Sep 2020 - Present | Madrid, Spain</em></p>
+              <ul>
+                <li>Functional and technical analysis of digital solutions in complex banking environments, ensuring alignment with Santander Group's technology strategy.</li>
+                <li>Co-leadership in strategic initiatives for the evolution of corporate technology platforms, improving scalability and resilience.</li>
+                <li>Cross-functional coordination with development, architecture, and infrastructure teams to ensure robust integrations and incident-free deployments.</li>
+                <li><strong>Key Technologies:</strong> IBM API Connect, Apigee, MuleSoft, OpenShift, Kubernetes, Spring Boot, Python, Ansible, Terraform, Dynatrace, ELK, GitHub Actions, Azure DevOps.</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <h3>Solutions Architect — everis</h3>
+              <p><em>Sep 2018 - Sep 2020 | Madrid, Spain</em></p>
+              <ul>
+                <li>Design and implementation of enterprise integration architectures (ESB, API Management, iPaaS) for large-scale clients.</li>
+                <li>Specialization in technologies such as Tibco BW 5/6, MuleSoft, Apigee, IBM API Connect, WSO2, and Kong.</li>
+                <li>Definition of cloud migration strategies (AWS, Azure, GCP) and containerization with Docker/Kubernetes.</li>
+                <li>Establishment of methodologies and technical standards for development teams, improving code quality and maintainability.</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <h3>TIBCO BusinessWorks Analyst/Developer — everis</h3>
+              <p><em>Jan 2012 - Aug 2018 | Madrid, Spain</em></p>
+              <ul>
+                <li>Development and implementation of critical integration processes using TIBCO BusinessWorks, EMS, and RendezVous.</li>
+                <li>Business process analysis and translation into technical flows, ensuring traceability and functional compliance.</li>
+                <li>Design of integration infrastructures and comprehensive testing plans for software components.</li>
+                <li><strong>Technologies:</strong> Java, XML/XSD/XSLT, JSON, Oracle DB, J2EE.</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <h3>Java J2EE Analyst/Developer — everis</h3>
+              <p><em>Feb 2011 - Jan 2012 | Madrid, Spain</em></p>
+              <ul>
+                <li>Development of enterprise applications using Spring, Hibernate, and Struts.</li>
+                <li>Construction of user interfaces using JavaScript, jQuery, CSS, HTML, and JSP.</li>
+                <li>Participation in full development cycle: analysis, coding, testing, and deployment.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="proyectos-en" class="section lang-en">
+          <div class="code-block">
+            <h2><span class="tag"><h2></span>Personal Projects<span class="tag"></h2></span></h2>
+
+            <div class="project">
+              <h3><a href="https://retrochuches.com" target="_blank">CEO & Creator — retrochuches.com</a></h3>
+              <p>Online store specializing in retro candies and products. Responsible for strategy, design, technical development, and operations. <code>E-Commerce, WordPress, WooCommerce, Digital Marketing</code></p>
+            </div>
+
+            <div class="project">
+              <h3>Android App — Song Manager for Children's Camps</h3>
+              <p>Native Android app that allows camp counselors to manage, organize, and play songs during children's activities. Developed out of passion for non-formal education. <code>Android, Java, SQLite, Child-friendly UX</code></p>
+            </div>
+
+            <div class="project">
+              <h3>Personal App — Train Price Monitor</h3>
+              <p>Automated application that tracks and alerts on offers and price fluctuations for train tickets (Renfe, etc.). Developed for personal use and expense optimization. <code>Python, Web Scraping, Notifications, Automation</code></p>
+            </div>
+          </div>
+        </section>
+
+        <section id="contacto-en" class="section lang-en">
+          <div class="code-block">
+            <h2><span class="tag"><h2></span>Contact<span class="tag"></h2></span></h2>
+            <p>📫 <a href="mailto:esecandy87@gmail.com">esecandy87@gmail.com</a></p>
+            <p>📞 +34 617 04 07 40</p>
+            <p>📍 Calle Camarena 88, 1ºD, Madrid, Spain</p>
+            <p>🐙 <a href="https://www.linkedin.com/in/miguel-c-suárez-gonzález-76ba8048/" target="_blank">linkedin.com/in/miguel-c-suárez-gonzález-76ba8048</a></p>
+            <p>🌐 <a href="https://retrochuches.com" target="_blank">retrochuches.com</a> | ✍️ <a href="https://aunclickdedistancia.blogspot.com" target="_blank">Personal Blog</a></p>
+            <p>🌱 Available for consulting, solution architecture, or tech collaborations.</p>
           </div>
         </section>
       </div>
