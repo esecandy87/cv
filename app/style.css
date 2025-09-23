@@ -166,10 +166,10 @@ body {
   to { opacity: 1; }
 }
 
-/* Bloque de código con números de línea */
+/* Bloque de código con números de línea — CORREGIDO */
 .code-block {
   position: relative;
-  padding-left: 40px;
+  padding-left: 50px; /* espacio suficiente para números + margen */
   margin: 0 -30px;
   padding-right: 30px;
   counter-reset: line;
@@ -195,20 +195,21 @@ body {
 .code-block > * {
   counter-increment: line;
   position: relative;
-  padding: 4px 0;
+  padding: 6px 0; /* espacio vertical para mejor legibilidad */
+  margin: 0;
 }
 
 .code-block > *::before {
   content: counter(line);
   position: absolute;
-  left: -40px;
-  width: 40px;
-  padding-right: 8px;
+  left: 8px; /* ajustado para que no choque con el borde */
+  width: 30px;
   text-align: right;
   color: var(--vscode-line-number);
   font-size: 0.85em;
   user-select: none;
   pointer-events: none;
+  top: 6px; /* alinea verticalmente con el texto */
 }
 
 /* Hover para resaltar línea */
@@ -221,6 +222,12 @@ h2 {
   color: var(--vscode-function);
   margin-bottom: 20px;
   font-weight: 500;
+}
+
+h3 {
+  color: var(--vscode-accent);
+  margin-top: 16px;
+  margin-bottom: 8px;
 }
 
 .tag {
@@ -263,17 +270,18 @@ a:hover {
   }
 
   .code-block {
-    padding-left: 30px;
+    padding-left: 45px;
   }
 
   .code-block > *::before {
-    left: -30px;
-    width: 30px;
+    left: 6px;
+    width: 28px;
     font-size: 0.8em;
+    top: 5px;
   }
 
   .code-block::before {
-    width: 30px;
+    width: 38px;
     font-size: 0.8em;
   }
 }
