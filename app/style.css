@@ -155,7 +155,7 @@ body {
   width: 40px;
   background-color: #262626;
   border-right: 1px solid #3a3a3a;
-  padding: 0 8px;
+  padding: 0 0px;
   text-align: right;
   color: var(--vscode-line-number);
   font-size: 0.85em;
