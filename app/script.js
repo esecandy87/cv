@@ -1,25 +1,60 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const navLinks = document.querySelectorAll('.sidebar a');
-  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const langButtons = document.querySelectorAll('.lang-btn');
   const exportButton = document.getElementById('exportPdf');
   const pdfContainer = document.getElementById('pdf-export-container');
 
-  function showSection(id) {
-    sections.forEach(sec => sec.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
+  let currentLang = 'es';
 
+  // Mostrar sección inicial
+  showSection('perfil', currentLang);
+
+  // Cambiar idioma
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Quitar active de todos
+      langButtons.forEach(b => b.classList.remove('active'));
+      // Poner active en el clickeado
+      this.classList.add('active');
+
+      // Cambiar idioma actual
+      currentLang = this.getAttribute('data-lang');
+
+      // Mostrar sección activa en el nuevo idioma
+      const activeSectionId = document.querySelector('.section.active')?.id.replace(/-en$/, '');
+      const baseId = activeSectionId?.replace(/-en$/, '');
+      showSection(baseId || 'perfil', currentLang);
+    });
+  });
+
+  // Navegación por secciones
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
 
+      // Quitar active de todos
       navLinks.forEach(l => l.classList.remove('active'));
+      // Poner active en el clickeado
       this.classList.add('active');
 
-      const targetId = this.getAttribute('href').substring(1);
-      showSection(targetId);
+      // Mostrar sección correspondiente
+      const baseId = this.getAttribute('data-section');
+      showSection(baseId, currentLang);
     });
   });
+
+  // Función para mostrar sección
+  function showSection(baseId, lang) {
+    // Ocultar todas
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+
+    // Mostrar la correcta
+    const targetId = lang === 'en' ? `${baseId}-en` : baseId;
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+      targetSection.classList.add('active');
+    }
+  }
 
   // Exportar a PDF
   exportButton.addEventListener('click', function() {
@@ -39,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 3. Opciones de PDF
     const opt = {
       margin:       10, // mm
-      filename:     'CV_TuNombre_Programador.pdf',
+      filename:     currentLang === 'en' ? 'Miguel_C_Suarez_CV_EN.pdf' : 'Miguel_C_Suarez_CV_ES.pdf',
       image:        { type: 'jpeg', quality: 0.98 },
       html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
       jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -65,7 +100,4 @@ document.addEventListener('DOMContentLoaded', function() {
         exportButton.disabled = false;
       });
   });
-
-  // Mostrar sección inicial
-  showSection('perfil');
 });
