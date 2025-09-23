@@ -21,9 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
       currentLang = this.getAttribute('data-lang');
 
       // Mostrar sección activa en el nuevo idioma
-      const activeSectionId = document.querySelector('.section.active')?.id.replace(/-en$/, '');
-      const baseId = activeSectionId?.replace(/-en$/, '');
-      showSection(baseId || 'perfil', currentLang);
+      const activeSection = document.querySelector('.section.active');
+      if (activeSection) {
+        const baseId = activeSection.id.replace('-en', '');
+        showSection(baseId, currentLang);
+      }
     });
   });
 
