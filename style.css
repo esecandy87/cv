@@ -280,15 +280,18 @@ a:hover {
 
 /* Contenedor oculto para generación de PDF */
 .pdf-container {
-  display: none; /* oculto visualmente */
-  position: absolute;
-  left: -9999px;
-  top: -9999px;
-  width: 210mm; /* A4 width */
-  background: white !important;
-  color: black !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 210mm;
   padding: 20mm;
+  background: white;
+  color: black;
   font-family: Arial, sans-serif;
+  z-index: -1000; /* lo mantiene fuera de vista, pero visible para html2canvas */
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 .pdf-container * {
