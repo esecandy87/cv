@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV - Miguel C. Suárez González</title>
+  <style>
+    :root {
+      --text: #333;
+      --accent: #007acc;
+      --light: #f5f5f5;
+      --border: #ddd;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: white;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--accent);
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+    .contact {
+      font-size: 14px;
+      color: #555;
+    }
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .contact a:hover {
+      text-decoration: underline;
+    }
+    .lang-switch {
+      text-align: center;
+      margin: 15px 0;
+    }
+    .lang-btn {
+      background: var(--light);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      margin: 0 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+    section {
+      margin-bottom: 25px;
+    }
+    h2 {
+      color: var(--accent);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      margin: 14px 0 6px;
+      color: #222;
+    }
+    ul {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    .hidden {
+      display: none;
+    }
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+      }
+      .lang-switch {
+        display: none;
+      }
+      .container {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Miguel C. Suárez González</h1>
+      <div class="contact">
+        Calle Camarena 88, 1ºD, Madrid, España | 
+        📞 +34 617 04 07 40 | 
+        ✉️ <a href="mailto:esecandy87@gmail.com">esecandy87@gmail.com</a><br>
+        🔗 <a href="https://www.linkedin.com/in/miguel-c-suárez-gonzález-76ba8048/" target="_blank">LinkedIn</a> | 
+        🌐 <a href="https://retrochuches.com" target="_blank">retrochuches.com</a>
+      </div>
+    </header>
+
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="es">ES</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <!-- ESPAÑOL -->
+    <div id="cv-es" class="cv-content">
+      <section>
+        <h2>Perfil</h2>
+        <p>Senior Solutions Analyst con 15+ años en consultoría IT, especializado en arquitectura de integración, APIs y transformación digital en entornos bancarios y corporativos. Experto en tecnologías como TIBCO, MuleSoft, Apigee, OpenShift, Kubernetes, y DevOps (Ansible, Terraform, CI/CD).</p>
+      </section>
+
+      <section>
+        <h2>Experiencia</h2>
+        <h3>Senior Solutions Analyst — Santander Digital Services</h3>
+        <p><em>Sept 2020 – Presente | Madrid, España</em></p>
+        <ul>
+          <li>Análisis funcional y técnico de soluciones digitales en entornos bancarios complejos.</li>
+          <li>Co-liderazgo en iniciativas estratégicas para la evolución de plataformas tecnológicas del Grupo Santander.</li>
+          <li>Coordinación transversal con equipos de desarrollo, arquitectura e infraestructura.</li>
+        </ul>
+
+        <h3>Arquitecto de Soluciones — everis</h3>
+        <p><em>Sept 2018 – Sept 2020 | Madrid, España</em></p>
+        <ul>
+          <li>Diseño de arquitecturas de integración (ESB, API Management, iPaaS) para grandes clientes.</li>
+          <li>Especialización en TIBCO BW, MuleSoft, Apigee, WSO2, Kong, AWS, Azure, GCP.</li>
+        </ul>
+
+        <h3>Analista Programador TIBCO BusinessWorks — everis</h3>
+        <p><em>Ene 2012 – Ago 2018 | Madrid, España</em></p>
+        <ul>
+          <li>Desarrollo de procesos de integración crítica con TIBCO BW, EMS, RendezVous.</li>
+          <li>Análisis de procesos de negocio y diseño de infraestructuras de integración.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Habilidades</h2>
+        <ul>
+          <li><strong>API & Integración:</strong> IBM API Connect, Apigee, MuleSoft, TIBCO BW, WSO2, Kong, SOAP, Kafka</li>
+          <li><strong>Cloud & DevOps:</strong> OpenShift, Kubernetes, Docker, AWS, Azure, GCP, Ansible, Terraform, GitHub Actions</li>
+          <li><strong>Backend:</strong> Java, Spring Boot, Python, J2EE, XML/XSD/XSLT, JSON</li>
+          <li><strong>Monitoring:</strong> Dynatrace, ELK Stack</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Idiomas</h2>
+        <ul>
+          <li>Español: Nativo | Inglés: Profesional Completo | Francés: Nivel Laboral Limitado | Japonés: Elemental</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- INGLÉS -->
+    <div id="cv-en" class="cv-content hidden">
+      <section>
+        <h2>Profile</h2>
+        <p>Senior Solutions Analyst with 15+ years of IT consulting experience, specialized in integration architecture, APIs, and digital transformation in banking and corporate environments. Expert in technologies such as TIBCO, MuleSoft, Apigee, OpenShift, Kubernetes, and DevOps (Ansible, Terraform, CI/CD).</p>
+      </section>
+
+      <section>
+        <h2>Experience</h2>
+        <h3>Senior Solutions Analyst — Santander Digital Services</h3>
+        <p><em>Sep 2020 – Present | Madrid, Spain</em></p>
+        <ul>
+          <li>Functional and technical analysis of digital solutions in complex banking environments.</li>
+          <li>Co-leadership in strategic initiatives for the evolution of Santander Group's technology platforms.</li>
+          <li>Cross-functional coordination with development, architecture, and infrastructure teams.</li>
+        </ul>
+
+        <h3>Solutions Architect — everis</h3>
+        <p><em>Sep 2018 – Sep 2020 | Madrid, Spain</em></p>
+        <ul>
+          <li>Design of enterprise integration architectures (ESB, API Management, iPaaS) for large clients.</li>
+          <li>Specialization in TIBCO BW, MuleSoft, Apigee, WSO2, Kong, AWS, Azure, GCP.</li>
+        </ul>
+
+        <h3>TIBCO BusinessWorks Analyst/Developer — everis</h3>
+        <p><em>Jan 2012 – Aug 2018 | Madrid, Spain</em></p>
+        <ul>
+          <li>Development of critical integration processes using TIBCO BW, EMS, RendezVous.</li>
+          <li>Business process analysis and integration infrastructure design.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <ul>
+          <li><strong>API & Integration:</strong> IBM API Connect, Apigee, MuleSoft, TIBCO BW, WSO2, Kong, SOAP, Kafka</li>
+          <li><strong>Cloud & DevOps:</strong> OpenShift, Kubernetes, Docker, AWS, Azure, GCP, Ansible, Terraform, GitHub Actions</li>
+          <li><strong>Backend:</strong> Java, Spring Boot, Python, J2EE, XML/XSD/XSLT, JSON</li>
+          <li><strong>Monitoring:</strong> Dynatrace, ELK Stack</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Languages</h2>
+        <ul>
+          <li>Spanish: Native | English: Full Professional | French: Limited Working | Japanese: Elementary</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const lang = btn.dataset.lang;
+        document.getElementById('cv-es').classList.toggle('hidden', lang !== 'es');
+        document.getElementById('cv-en').classList.toggle('hidden', lang !== 'en');
+      });
+    });
+  </script>
+</body>
+</html>
