@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const navLinks = document.querySelectorAll('.nav-link');
   const langButtons = document.querySelectorAll('.lang-btn');
   const exportButton = document.getElementById('exportPdf');
@@ -11,16 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Cambiar idioma
   langButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
-      // Quitar active de todos
+    btn.addEventListener('click', function () {
       langButtons.forEach(b => b.classList.remove('active'));
-      // Poner active en el clickeado
       this.classList.add('active');
-
-      // Cambiar idioma actual
       currentLang = this.getAttribute('data-lang');
-
-      // Mostrar sección activa en el nuevo idioma
       const activeSection = document.querySelector('.section.active');
       if (activeSection) {
         const baseId = activeSection.id.replace('-en', '');
@@ -29,28 +23,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Navegación por secciones
+  // Navegación
   navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.addEventListener('click', function (e) {
       e.preventDefault();
-
-      // Quitar active de todos
       navLinks.forEach(l => l.classList.remove('active'));
-      // Poner active en el clickeado
       this.classList.add('active');
-
-      // Mostrar sección correspondiente
       const baseId = this.getAttribute('data-section');
       showSection(baseId, currentLang);
     });
   });
 
-  // Función para mostrar sección
   function showSection(baseId, lang) {
-    // Ocultar todas
     document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-
-    // Mostrar la correcta
     const targetId = lang === 'en' ? `${baseId}-en` : baseId;
     const targetSection = document.getElementById(targetId);
     if (targetSection) {
@@ -58,35 +43,74 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Exportar a PDF
-  exportButton.addEventListener('click', function() {
-    // 1. Limpiar contenedor PDF
-    pdfContainer.innerHTML = '';
-
-    // 2. Clonar la sección activa (la visible)
+  // ✅ EXPORTAR A PDF — CORREGIDO
+  exportButton.addEventListener('click', function () {
     const activeSection = document.querySelector('.section.active');
     if (!activeSection) {
-      alert("No hay sección activa para exportar.");
+      alert('No hay contenido para exportar.');
       return;
     }
 
-    const clonedContent = activeSection.cloneNode(true);
-    pdfContainer.appendChild(clonedContent);
+    // Limpiar contenedor
+    pdfContainer.innerHTML = '';
 
-    // 3. Opciones de PDF
+    // Clonar contenido
+    const clone = activeSection.cloneNode(true);
+
+    // Crear un wrapper con estilos inline para PDF
+    const wrapper = document.createElement('div');
+    wrapper.style.fontFamily = 'Arial, sans-serif';
+    wrapper.style.padding = '20mm';
+    wrapper.style.color = '#000';
+    wrapper.style.lineHeight = '1.6';
+    wrapper.style.maxWidth = '210mm';
+    wrapper.style.margin = '0 auto';
+
+    // Eliminar números de línea (pseudo-elementos no se renderizan en PDF)
+    const codeBlocks = clone.querySelectorAll('.code-block');
+    codeBlocks.forEach(cb => {
+      cb.style.paddingLeft = '0';
+      cb.style.borderLeft = 'none';
+      cb.style.position = 'relative';
+      // Eliminar pseudo-elementos visualmente (no se pueden clonar)
+      const cleanBlock = document.createElement('div');
+      cleanBlock.innerHTML = cb.innerHTML;
+      cb.parentNode.replaceChild(cleanBlock, cb);
+    });
+
+    // Estilizar encabezados y enlaces
+    const headings = clone.querySelectorAll('h2, h3');
+    headings.forEach(h => {
+      h.style.color = '#005a9e';
+      h.style.borderBottom = '1px solid #007acc';
+      h.style.paddingBottom = '4px';
+    });
+
+    const links = clone.querySelectorAll('a');
+    links.forEach(a => {
+      a.style.color = '#007acc';
+      a.style.textDecoration = 'underline';
+    });
+
+    wrapper.appendChild(clone);
+    pdfContainer.appendChild(wrapper);
+
     const opt = {
-      margin:       10, // mm
-      filename:     currentLang === 'en' ? 'Miguel_C_Suarez_CV_EN.pdf' : 'Miguel_C_Suarez_CV_ES.pdf',
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
-      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      margin: 10,
+      filename: currentLang === 'en' ? 'Miguel_C_Suarez_CV_EN.pdf' : 'Miguel_C_Suarez_CV_ES.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        // Forzar renderizado de fondo blanco
+      },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    // 4. Feedback visual
     exportButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
     exportButton.disabled = true;
 
-    // 5. Generar PDF desde el contenedor limpio
     html2pdf()
       .from(pdfContainer)
       .set(opt)
@@ -96,8 +120,8 @@ document.addEventListener('DOMContentLoaded', function() {
         exportButton.disabled = false;
       })
       .catch(err => {
-        console.error("Error al generar PDF:", err);
-        alert("Hubo un error al generar el PDF. Revisa la consola.");
+        console.error('Error PDF:', err);
+        alert('Error al generar PDF. Abre la consola para más detalles.');
         exportButton.innerHTML = '<i class="fas fa-file-pdf"></i>';
         exportButton.disabled = false;
       });
