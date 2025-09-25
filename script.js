@@ -1,93 +1,72 @@
 document.addEventListener('DOMContentLoaded', function () {
   const navLinks = document.querySelectorAll('.nav-link');
   const langButtons = document.querySelectorAll('.lang-btn');
-  const exportButton = document.getElementById('exportPdf');
-  const pdfContainer = document.getElementById('pdf-export-container');
-
   let currentLang = 'es';
+
+  // Mostrar sección inicial
   showSection('perfil', currentLang);
 
-  // Cambio de idioma
-  langButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      langButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentLang = btn.dataset.lang;
-      const active = document.querySelector('.section.active');
-      const baseId = active?.id.replace('-en', '') || 'perfil';
-      showSection(baseId, currentLang);
-    });
-  });
-
-  // Navegación
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      navLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      showSection(link.dataset.section, currentLang);
-    });
-  });
-
+  // Función para mostrar una sección específica
   function showSection(baseId, lang) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    const id = lang === 'en' ? `${baseId}-en` : baseId;
-    const sec = document.getElementById(id);
-    if (sec) sec.classList.add('active');
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    const targetId = lang === 'en' ? `${baseId}-en` : baseId;
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+      targetSection.classList.add('active');
+    }
   }
 
-  // ✅ EXPORTACIÓN CORREGIDA
-  exportButton.addEventListener('click', () => {
-    const active = document.querySelector('.section.active');
-    if (!active) return alert('No hay contenido para exportar.');
+  // Actualizar el enlace de descarga del PDF según el idioma
+  function updatePdfLink(lang) {
+    const pdfLink = document.getElementById('pdfLink');
+    if (lang === 'en') {
+      pdfLink.href = 'CV - Miguel C. Suárez González EN.pdf';
+      pdfLink.download = 'CV - Miguel C. Suárez González EN.pdf';
+    } else {
+      pdfLink.href = 'CV - Miguel C. Suárez González.pdf';
+      pdfLink.download = 'CV - Miguel C. Suárez González.pdf';
+    }
+  }
 
-    // Limpiar contenedor PDF
-    pdfContainer.innerHTML = '';
+  // Inicializar el enlace de PDF
+  updatePdfLink(currentLang);
 
-    // Clonar y limpiar
-    const clone = active.cloneNode(true);
+  // Evento: cambio de idioma
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', function () {
+      // Quitar clase 'active' de todos los botones de idioma
+      langButtons.forEach(b => b.classList.remove('active'));
+      // Añadir 'active' al botón clicado
+      this.classList.add('active');
 
-    // Eliminar números de línea (no se renderizan bien)
-    clone.querySelectorAll('.code-block').forEach(cb => {
-      cb.style.paddingLeft = '0';
-      cb.style.borderLeft = 'none';
-      cb.style.background = 'transparent';
-    });
+      // Actualizar idioma actual
+      currentLang = this.getAttribute('data-lang');
 
-    // Aplicar estilos inline para PDF
-    clone.querySelectorAll('*').forEach(el => {
-      el.style.backgroundColor = 'transparent';
-      if (el.tagName === 'H2' || el.tagName === 'H3') {
-        el.style.color = '#005a9e';
-        el.style.borderBottom = '1px solid #007acc';
+      // Actualizar enlace de PDF
+      updatePdfLink(currentLang);
+
+      // Mantener la sección activa en el nuevo idioma
+      const activeSection = document.querySelector('.section.active');
+      if (activeSection) {
+        const baseId = activeSection.id.replace('-en', '');
+        showSection(baseId, currentLang);
       }
-      if (el.tagName === 'A') {
-        el.style.color = '#007acc';
-        el.style.textDecoration = 'underline';
-      }
     });
+  });
 
-    pdfContainer.appendChild(clone);
+  // Evento: navegación por secciones
+  navLinks.forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
 
-    const opt = {
-      margin: 10,
-      filename: currentLang === 'en' ? 'Miguel_C_Suarez_CV_EN.pdf' : 'Miguel_C_Suarez_CV_ES.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#ffffff',
-        logging: false
-      },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+      // Quitar 'active' de todos los enlaces de navegación
+      navLinks.forEach(l => l.classList.remove('active'));
+      // Añadir 'active' al enlace clicado
+      this.classList.add('active');
 
-    exportButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-    exportButton.disabled = true;
-
-    html2pdf().from(pdfContainer).set(opt).save().finally(() => {
-      exportButton.innerHTML = '<i class="fas fa-file-pdf"></i>';
-      exportButton.disabled = false;
+      // Mostrar sección correspondiente
+      const baseId = this.getAttribute('data-section');
+      showSection(baseId, currentLang);
     });
   });
 });
